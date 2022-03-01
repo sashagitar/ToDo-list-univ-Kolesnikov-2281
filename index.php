@@ -2,9 +2,10 @@
     include_once "head.php"
 ?>
 <div style="display: flex;
-            justify-content: centrer;
-            align-items: center; ">
-    <img src="../image/cat.png">
+            justify-content: center;
+            align-items: center; 
+            margin: 1%;">
+    <img src="image/cat.png">
 </div>
 <?php 
     include_once "footer.php"    
