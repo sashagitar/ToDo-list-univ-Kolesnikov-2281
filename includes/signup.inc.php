@@ -17,6 +17,7 @@
             header('location: ../signup.php?error=emptyfield');
             exit();
         }
+        exit();
         // совпадение паролей
         if ($pass !== $passRep) {
             header('location: ../signup.php?error=uncorrektRepPass');

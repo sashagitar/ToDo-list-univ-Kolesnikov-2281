@@ -30,12 +30,21 @@ use LDAP\Result;
             }
         }
     }
+    // function getUser($pdo, $user){      это я доделаю потом
+    //     $stmt = $pdo -> prepare("SELECT * FROM users WHERE user = ?;");
+    //     $stmt->execute([$user]);
+    //     $row = $stmt -> fetch();
+    //     $haaaaa = ['id', 'user', 'email', 'pass'];
+    //     for ($i = 0; $i < count(($row)); $i++){
+    //         echo $row[$haaaaa[$i]];
+    //     }
+    // }
     // Создаём пользователя
     function createUser($pdo, $user, $email, $pass, $passRep) {
         $sql = "INSERT INTO users (user, email, pass) VALUES (?, ?, ?);";
         try {
             $stmt = $pdo -> prepare($sql);
-            $hashPwd = password_hash($pass, PASSWORD_DEFAULT);
+            $hashPwd = md5($pass);
             $stmt -> execute([$user, $email, $hashPwd]);
             header("location: ../signup.php?error=none");
             exit();
