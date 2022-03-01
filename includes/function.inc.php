@@ -14,7 +14,7 @@ use LDAP\Result;
         return $result;
     }
     // чекаем, есть ли почта в базе
-    function existUser($pdo, $email) {
+    function existEmail($pdo, $email) {
         $sql = "SELECT * FROM users WHERE email = ?;";
         $stmt = $pdo -> prepare($sql);
         $stmt -> execute([$email]);

@@ -28,7 +28,7 @@
             exit();
         }
         // есть ли почта в базе
-        if (existUser($pdo, $email)) {
+        if (existEmail($pdo, $email)) {
             header('location: ../signup.php?error=emailExist');
             exit();
         }
