@@ -3,8 +3,10 @@
 ?>
 <div class="vertDiv" style="align-items: center;
                             margin: 3%;">
+            <!-- Блок вывода ошибок и инфы -->
             <div name="error" id="error"></div>
-            <input type="text" name="user_name" placeholder="User name" style=" width: 20%;
+            <!-- Поля для заполнения чтобы залогиниться -->
+            <input type="text" name="user" placeholder="User name" style=" width: 20%;
                                                                         height: 20%;
                                                                         text-align: center;
                                                                         font-size: x-large;">

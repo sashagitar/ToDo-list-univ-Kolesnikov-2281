@@ -1,7 +1,7 @@
 <?php
 
 use LDAP\Result;
-
+    // Проверка на заполнение всех полей
     function emptyField($fiels) {
         $result = false;
         foreach ($fiels as $filed) 
@@ -13,21 +13,30 @@ use LDAP\Result;
         }
         return $result;
     }
+    // чекаем, есть ли почта в базе
     function existUser($pdo, $email) {
-        $sql = "SELECT * FROM users WHERE 'email' = ?";
+        $sql = "SELECT * FROM users WHERE email = ?;";
         $stmt = $pdo -> prepare($sql);
         $stmt -> execute([$email]);
 
-        if ($stmt -> rowCount() === 0){ return false; }
-        else { return true; }
+        if ($stmt) {
+            if ($stmt -> rowCount() === 0)
+            { 
+                return false; 
+            }
+            else 
+            { 
+                return true; 
+            }
+        }
     }
-
-    function createUser($pdo, $login, $email, $pass, $passRep) {
-        $sql = "INSERT INTO users ('login', email, pass) VALUES (?, ?, ?);";
+    // Создаём пользователя
+    function createUser($pdo, $user, $email, $pass, $passRep) {
+        $sql = "INSERT INTO users (user, email, pass) VALUES (?, ?, ?);";
         try {
             $stmt = $pdo -> prepare($sql);
             $hashPwd = password_hash($pass, PASSWORD_DEFAULT);
-            $stmt -> execute([$login, $email, $hashPwd]);
+            $stmt -> execute([$user, $email, $hashPwd]);
             header("location: ../signup.php?error=none");
             exit();
         }

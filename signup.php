@@ -7,6 +7,7 @@
 
         <div name="error" id="error"></div>
             <?php
+            // Вывод ошибок если таковые есть
                 if (isset($_GET['error'])){
                     switch ($_GET['error']) 
                     {
@@ -19,14 +20,14 @@
                             break;
                         }
                         case 'uncorrektEmail':{
-                            echo '<span style="color: red">"Введите корректную почту"</span>';
+                            echo '<span style="color: red">Введите корректную почту</span>';
                             break;
                         }
                         case 'emailExist':{
-                            echo '<span style="color: red">Вы не зарегестрированны.</span>';
+                            echo '<span style="color: red">"Эта почта уже используется.</span>';
                             break;
                         }
-                        case 'correctRgrstr':{
+                        case 'none':{
                             echo '<span style="color: green">Вы зарегестрированны)</span>';
                             break;
                         }
@@ -34,11 +35,12 @@
                     }
                 }
             ?>
+        <!--                    Поля для регистрации                                         -->
         <input type="text" name="email" placeholder="email" style=" width: 20%;
                                                                     height: 20%;
                                                                     text-align: center;
                                                                     font-size: x-large;">
-        <input type="text" name="login" placeholder="User name" style=" width: 20%;
+        <input type="text" name="user" placeholder="User name" style=" width: 20%;
                                                                     height: 20%;
                                                                     text-align: center;
                                                                     font-size: x-large;">
@@ -51,7 +53,7 @@
                                                                                 text-align: center;
                                                                                 font-size: x-large;">
         <button type="submit" name="submit" style=" font-size: x-large;">Sing Up</button>
-
+        <!--                                                                                      -->
     </div>
 </form>
 <?php 
