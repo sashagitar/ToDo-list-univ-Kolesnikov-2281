@@ -32,7 +32,7 @@
  нет    | MVC
 -------------------------------------------------------
 ## Мои контакты
-![vk](../ToDo-list-univ-Kolesnikov-2281/image/vk_icon.png)  https://vk.com/hidden_by.the_devil
+![vk](image/vk_icon.png)  https://vk.com/hidden_by.the_devil
 
 Email: DAI.20@uni_dubna.ru
 
