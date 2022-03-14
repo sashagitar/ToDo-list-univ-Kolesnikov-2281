@@ -30,15 +30,19 @@ use LDAP\Result;
             }
         }
     }
-    // function getUser($pdo, $user){      это я доделаю потом
-    //     $stmt = $pdo -> prepare("SELECT * FROM users WHERE user = ?;");
-    //     $stmt->execute([$user]);
-    //     $row = $stmt -> fetch();
-    //     $haaaaa = ['id', 'user', 'email', 'pass'];
-    //     for ($i = 0; $i < count(($row)); $i++){
-    //         echo $row[$haaaaa[$i]];
-    //     }
-    // }
+    function getUser($pdo, $email, $pass) {
+        $stmt = $pdo -> prepare("SELECT * FROM users WHERE email = ?;");
+        $stmt->execute([$email]);
+        $row = $stmt -> fetch();
+        $haaaaa = ['id', 'user', 'email', 'pass'];
+        if (md5($pass) == $row['pass']) {
+            for ($i = 0; $i < count(($row)); $i++) {
+                echo $row[$haaaaa[$i]];
+            }
+            return false;
+        }
+        else return true;
+    }
     // Создаём пользователя
     function createUser($pdo, $user, $email, $pass, $passRep) {
         $sql = "INSERT INTO users (user, email, pass) VALUES (?, ?, ?);";

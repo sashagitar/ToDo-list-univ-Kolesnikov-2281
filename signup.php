@@ -5,8 +5,8 @@
     <div class="vertDiv" style="align-items: center;
                             margin: 3%;">
 
-        <div name="error" id="error"></div>
-            <?php
+        <div name="error" id="error">
+        <?php
             // Вывод ошибок если таковые есть
                 if (isset($_GET['error'])){
                     switch ($_GET['error']) 
@@ -29,12 +29,15 @@
                         }
                         case 'none':{
                             echo '<span style="color: green">Вы зарегестрированны)</span>';
+                            // header('location: ../login.php');
                             break;
                         }
                         
                     }
                 }
             ?>
+        </div>
+            
         <!--                    Поля для регистрации                                         -->
         <input type="text" name="email" placeholder="email" style=" width: 20%;
                                                                     height: 20%;
