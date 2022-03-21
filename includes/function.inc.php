@@ -24,7 +24,7 @@ use LDAP\Result;
             { 
                 return false; 
             }
-            else 
+            else
             { 
                 return true; 
             }
@@ -33,12 +33,11 @@ use LDAP\Result;
     function getUser($pdo, $email, $pass) {
         $stmt = $pdo -> prepare("SELECT * FROM users WHERE email = ?;");
         $stmt->execute([$email]);
-        $row = $stmt -> fetch();
-        $haaaaa = ['id', 'user', 'email', 'pass'];
-        if (md5($pass) == $row['pass']) {
-            for ($i = 0; $i < count(($row)); $i++) {
-                echo $row[$haaaaa[$i]];
-            }
+        $row = $stmt -> fetch(PDO::FETCH_LAZY);
+        $haa = ['id', 'user', 'email', 'pass'];
+        if (password_verify($pass, $row -> pass)) {
+            session_start();
+            session_create_id();
             return false;
         }
         else return true;
@@ -48,7 +47,7 @@ use LDAP\Result;
         $sql = "INSERT INTO users (user, email, pass) VALUES (?, ?, ?);";
         try {
             $stmt = $pdo -> prepare($sql);
-            $hashPwd = md5($pass);
+            $hashPwd = password_hash($pass, PASSWORD_DEFAULT);
             $stmt -> execute([$user, $email, $hashPwd]);
             header("location: ../signup.php?error=none");
             exit();

@@ -24,11 +24,4 @@
                 </div>
                 <img width="468px" height="60px">
             </div>
-            <div class="navigation">
-                <nav> <!-- здесь что-то будет типо меню -->
-                    <ul class="navigationUl">
-                        <li><a class="navigationText" href = "index.php"> HOME </a></li>
-                    </ul>
-                </nav>
-            </div>
         </header>

@@ -24,6 +24,9 @@
             header('location: ../login.php?error=uncorrekt');
             exit();
         }
+        else { 
+            header('location: ../ToDo.php?user='.$email);
+        }
     }
     else {
         // ребутаем если что-то пошло не так

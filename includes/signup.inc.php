@@ -33,7 +33,7 @@
             exit();
         }
         // создаём пользователя, если не вылетили до этого
-        createUser($pdo, $user, $email, $pwd, $pwdrepert);
+        createUser($pdo, $user, $email, $pass, $pwdrepert);
     }
     else {
         // ребутаем если что-то пошло не так
