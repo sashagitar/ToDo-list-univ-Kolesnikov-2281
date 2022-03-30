@@ -20,12 +20,12 @@
             exit();
         }
         // вызываем пользователя
-        if (getUser($pdo, $email, $pass)){
+        if (loginUser($pdo, $email, $pass)){
             header('location: ../login.php?error=uncorrekt');
             exit();
         }
         else { 
-            header('location: ../ToDo.php?user='.$email);
+            header('location: ../ToDo.php?user='.$_SESSION["favcolor"]);
         }
     }
     else {
