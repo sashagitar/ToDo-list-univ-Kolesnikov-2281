@@ -3,7 +3,7 @@
 ?>
 <form action="includes/signup.inc.php" method="post">
     <div class="vertDiv" style="align-items: center;
-                            margin: 3%;">
+                            margin: 10%;">
 
         <div name="error" id="error">
         <?php

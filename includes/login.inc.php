@@ -25,7 +25,7 @@
             exit();
         }
         else { 
-            header('location: ../ToDo.php?user='.$_SESSION["favcolor"]);
+            header('location: ../ToDo.php?user='.$email);
         }
     }
     else {

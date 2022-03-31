@@ -3,7 +3,7 @@
 ?>
 <form action="includes/login.inc.php" method="post">
     <div class="vertDiv" style="align-items: center;
-                                margin: 3%;">
+                                margin: 10%;">
                 <!-- Блок вывода ошибок и инфы -->
                 <div name="error" id="error">
                     <?php

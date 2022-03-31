@@ -1,5 +1,9 @@
 <?php
 
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 use LDAP\Result;
     // Проверка на заполнение всех полей
     function emptyField($fiels) {
@@ -56,27 +60,22 @@ use LDAP\Result;
         }
     }
     // Считывание заданий
-    function readTasks($pdo){
+    function readTasks($pdo){ 
         $sql = 'SELECT * FROM tasks WHERE id_user = ?;';
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$_SESSION["favcolor"]]);
             while ($row = $stmt->fetch(PDO::FETCH_LAZY))
             {
-                echo   '<li class="">
-                            <a href="includes/ToDo.inc.php">
-                                <p><b>' . $row->task . '</b></p>
-                                Дата выполнения '.$row->date_finish.'
-                            </a>  
-                            <a href="includes/ToDo_del.inc.php">
-                                <submit name="but" value="'.$row -> id.'">Удалить</button>
-                            </a>
-                        </li>';
+                echo   '<div class="task">
+                            <p><b>' . $row->task . '</b></p>
+                            Дата выполнения '.$row->date_finish.'
+                            <button type="submit" name="but" value="'.$row -> id.'">Удалить</button>
+                        </div>';
             }
-            exit;
         }
-        catch( PDOException $e ){
-            header("location: ../ToDo.php?error=stmt&message=".$e ->getMessage());
+        catch ( PDOException $e ){
+            header("location: ../ToDo.php?error=uncorrecruser");
             exit();
         }
     }
@@ -85,14 +84,13 @@ use LDAP\Result;
         $sql = "INSERT INTO tasks (id_user, task, date_finish) VALUES (?, ?, ?);";
         $id = $_SESSION["favcolor"];
         try{
-            header("location: ../ToDo.php?lol=".$_SESSION["favcolor"]);
             $stmt = $pdo -> prepare($sql);
             $stmt -> execute([$id, $task, $date_finish]);
             header("location: ../ToDo.php?error=none");
             exit();
         }
         catch ( PDOException $e ){
-            header("location: ../ToDo.php?error=stmt&message=".$e ->getMessage());
+            header("location: ../ToDo.php?error=uncorrecruser");
             exit();
         }
     }
@@ -100,10 +98,15 @@ use LDAP\Result;
     function deleteTask($pdo, $idDeleted){
 
         $sql = 'DELETE FROM `tasks` WHERE `id` = ?';
-        $query = $pdo->prepare($sql);
-        $query->execute([$idDeleted]);
-        if ($query) {
-             header("location: ../ToDo.php"); 
+        try {
+            $query = $pdo->prepare($sql);
+            $query->execute([$idDeleted]);
+            header("location: ../ToDo.php"); 
+            exit();
+        }
+        catch ( PDOException $e ){
+            header("location: ../ToDo.php?error=uncorrecruser");
+            exit();
         }
        
     }
